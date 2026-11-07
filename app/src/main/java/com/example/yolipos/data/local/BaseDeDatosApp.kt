@@ -9,6 +9,7 @@ import com.example.yolipos.data.local.dao.ProductoDao
 import com.example.yolipos.data.local.entities.ComandaEntidad
 import com.example.yolipos.data.local.entities.ProductoEntidad
 
+//BD principal de la app mediante la room
 @Database(
     entities = [ComandaEntidad::class, ProductoEntidad::class],
     version = 1,

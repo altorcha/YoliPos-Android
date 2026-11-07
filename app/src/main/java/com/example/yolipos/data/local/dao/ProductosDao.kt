@@ -9,6 +9,7 @@ import androidx.room.Update
 import com.example.yolipos.data.local.entities.ProductoEntidad
 import kotlinx.coroutines.flow.Flow
 
+//DAO para administrar el catalogo de productos
 @Dao
 interface ProductoDao {
 

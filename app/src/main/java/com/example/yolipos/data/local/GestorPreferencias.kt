@@ -3,6 +3,7 @@ package com.example.yolipos.data.local
 import android.content.Context
 import android.content.SharedPreferences
 
+//maneja las configuraciones de turno, datos del cajero y la interfaz (preferencas
 class GestorPreferencias(contexto: Context){
     private val preferenciasCompartidas: SharedPreferences =
         contexto.getSharedPreferences("PreferenciasUsuarioYoliPOS", Context.MODE_PRIVATE)

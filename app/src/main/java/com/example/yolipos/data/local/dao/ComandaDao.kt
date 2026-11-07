@@ -9,6 +9,7 @@ import androidx.room.Update
 import com.example.yolipos.data.local.entities.ComandaEntidad
 import kotlinx.coroutines.flow.Flow
 
+//DAO para los cruds y consultas de filtros en la tabla de comandas
 @Dao
 interface ComandaDao{
     @Query("SELECT * FROM  tabla_comandas ORDER by fechaHoraRegistro DESC")

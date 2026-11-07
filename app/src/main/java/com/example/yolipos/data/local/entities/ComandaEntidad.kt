@@ -3,6 +3,7 @@ package com.example.yolipos.data.local.entities
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+//tabla de comandas
 @Entity(tableName = "tabla_comandas")
 data class ComandaEntidad(
     @PrimaryKey(autoGenerate = true)

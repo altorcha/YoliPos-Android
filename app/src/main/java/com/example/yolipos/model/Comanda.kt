@@ -1,5 +1,6 @@
 package com.example.yolipos.model
 
+//esto representa una comanda registrada
 data class Comanda(
     val identificadorComanda: Long = 0,
     val nombreCliente: String,

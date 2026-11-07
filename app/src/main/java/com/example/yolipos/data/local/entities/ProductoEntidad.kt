@@ -3,6 +3,7 @@ package com.example.yolipos.data.local.entities
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+//tabla de productos
 @Entity(tableName = "tabla_productos")
 data class ProductoEntidad(
     @PrimaryKey(autoGenerate = true)

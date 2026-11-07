@@ -9,6 +9,7 @@ import com.example.yolipos.model.Producto
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
+//repositorio que abstrae el origen de los datos locales y remoto
 class RepositorioYoliPOS(
     private val objetoComandaDao: ComandaDao,
     private val objetoProductoDao: ProductoDao
@@ -20,6 +21,16 @@ class RepositorioYoliPOS(
             }
         }
     }
+    //comamdas por status
+    fun obtenerComandasPorEstado(estadoBuscado: String): Flow<List<Comanda>> {
+        return objetoComandaDao.obtenerComandasPorEstado(estadoBuscado).map { listaEntidadesComanda ->
+            listaEntidadesComanda.map { entidadComanda ->
+                convertirEntidadAModeloComanda(entidadComanda)
+            }
+        }
+    }
+
+    //comandas por fechas
     fun obtenerComandasPorRangoDeFechas(fechaInicio: Long, fechaFin: Long): Flow<List<Comanda>> {
         return objetoComandaDao.obtenerComandasPorRangoDeFechas(fechaInicio, fechaFin).map { listaEntidadesComanda ->
             listaEntidadesComanda.map { entidadComanda ->
@@ -27,18 +38,23 @@ class RepositorioYoliPOS(
             }
         }
     }
+    //agregar comanda
     suspend fun insertarComanda(comanda: Comanda): Long {
         val entidadComanda = convertirModeloAEntidadComanda(comanda)
         return objetoComandaDao.insertarComanda(entidadComanda)
     }
+    //actualizar status de comanda
     suspend fun actualizarEstadoComanda(identificadorComanda: Long, nuevoEstado: String) {
         objetoComandaDao.actualizarEstadoComanda(identificadorComanda, nuevoEstado)
     }
+
+    //quitar comanda
     suspend fun eliminarComanda(comanda: Comanda) {
         val entidadComanda = convertirModeloAEntidadComanda(comanda)
         objetoComandaDao.eliminarComanda(entidadComanda)
     }
 
+    //listado de productos
     fun obtenerTodosLosProductos(): Flow<List<Producto>> {
         return objetoProductoDao.obtenerTodosLosProductos().map { listaEntidadesProducto ->
             listaEntidadesProducto.map { entidadProducto ->
@@ -47,6 +63,7 @@ class RepositorioYoliPOS(
         }
     }
 
+    //listado de productos por categoria
     fun obtenerProductosPorCategoria(categoriaBuscada: String): Flow<List<Producto>> {
         return objetoProductoDao.obtenerProductosPorCategoria(categoriaBuscada).map { listaEntidadesProducto ->
             listaEntidadesProducto.map { entidadProducto ->
@@ -55,6 +72,7 @@ class RepositorioYoliPOS(
         }
     }
 
+    //agregar producto
     suspend fun insertarListaDeProductos(listaDeProductos: List<Producto>) {
         val listaEntidadesProducto = listaDeProductos.map { productoModelo ->
             convertirModeloAEntidadProducto(productoModelo)
@@ -62,6 +80,7 @@ class RepositorioYoliPOS(
         objetoProductoDao.insertarListaDeProductos(listaEntidadesProducto)
     }
 
+    //mapeo de funciones
     private fun convertirEntidadAModeloComanda(entidadComanda: ComandaEntidad): Comanda {
         return Comanda(
             identificadorComanda = entidadComanda.identificadorComanda,
