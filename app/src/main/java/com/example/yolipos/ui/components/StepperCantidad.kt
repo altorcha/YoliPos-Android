@@ -74,6 +74,10 @@ fun StepperCantidad(
 
 @Preview(showBackground = true)
 @Composable
-fun StepperCantidadPreview() {
-
+fun PrevisualizacionStepperCantidad() {
+    StepperCantidad(
+        cantidadActual = 3,
+        alIncrementarCantidad = {},
+        alDecrementarCantidad = {}
+    )
 }
