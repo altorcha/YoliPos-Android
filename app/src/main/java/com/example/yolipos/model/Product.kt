@@ -6,5 +6,5 @@ data class Producto(
     val precioProducto: Double,
     val categoriaProducto: String,
     val estaDisponible: Boolean = true,
-    val rutaImangenProducto: String = ""
+    val rutaImagenProducto: String = ""
 )
