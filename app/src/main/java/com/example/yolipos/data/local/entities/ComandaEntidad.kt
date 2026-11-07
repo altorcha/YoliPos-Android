@@ -6,10 +6,10 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "tabla_comandas")
 data class ComandaEntidad(
     @PrimaryKey(autoGenerate = true)
-    val identificadorComando: Long = 0,
+    val identificadorComanda: Long = 0,
     val nombreCliente: String,
     val origenPedido: String,
-    val estadoComando: String,
+    val estadoComanda: String,
     val metodoDePago: String,
     val montoTotal: Double,
     val fechaHoraRegistro: Long,
